@@ -79,7 +79,7 @@
 class Generator {
   constructor(story, time) {
     this.story = story;
-    this.time = time;
+    this.time  = time;
     this.state = {
       currentWord : ""
     }
@@ -87,8 +87,8 @@ class Generator {
 
   //   generate random word
   randomWord() {
-    const splitted = this.story.split(" ");
-    const randomWord = splitted[Math.floor(Math.random() * splitted.length - 1)];
+    const splitted    = this.story.split(" ");
+    const randomWord  = splitted[Math.floor(Math.random() * splitted.length - 1)];
     return randomWord;
   }
 
@@ -119,16 +119,17 @@ class Generator {
     const wpm = document.querySelector('#wpm-display');
     const time = document.querySelector('#time-display');
 
-
+    // insteat of bind
     const self = this;
+
     button.addEventListener("click", function () {
-      button.className = "hide";
-      stats.className = "";
-      input.className = "";
+      button.className  = "hide";
+      stats.className   = "";
+      input.className   = "";
       input.focus();
       self.nextWord();
-      let span = "";
-      let count = 60;
+      let span          = "";
+      let count         = self.time;
 
       (function timer() {
         setInterval(() => {
