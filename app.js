@@ -77,6 +77,14 @@
 // refresh the page
 
 class Generator {
+  constructor(story, time) {
+    this.story = story;
+    this.time = time;
+    this.state = {
+      currentWord : ""
+    }
+  }
+
   //   generate random word
   randomWord() {
     const splitted = this.story.split(" ");
@@ -90,19 +98,64 @@ class Generator {
     const word = this.randomWord();
     this.state.currentWord = word;
     textDisplay.textContent = word;
+    // console.log(word);
+  }
+
+  // create a span with userInput
+  createSpan(color, userInput) {
+    const span = document.createElement('span');
+    const style = 'background :' + color;
+    span.setAttribute('style', style);
+    span.textContent = userInput;
+    return span;
   }
 
   // button eventLIstener
   startButton() {
     const button = document.querySelector("#button");
     const stats = document.querySelector("#stats");
+    const input = document.querySelector('#input');
+    const form = document.querySelector('#form');
+    const wpm = document.querySelector('#wpm-display');
+    const time = document.querySelector('#time-display');
+
+
+    const self = this;
     button.addEventListener("click", function () {
       button.className = "hide";
       stats.className = "";
-      this.nextWord();
+      input.className = "";
+      input.focus();
+      self.nextWord();
+      let span = "";
+      let count = 60;
+
+      (function timer() {
+        setInterval(() => {
+          count--;
+          time.textContent = count;
+        }, 1000);
+      })()
+
+      // form submission
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // check if correct
+        const isCorrect = input.value === self.state.currentWord;
+        //if correct or not
+        if(isCorrect) span = self.createSpan('green', input.value);
+        else span = self.createSpan('red', input.value);
+
+        // clear input and append child span
+        input.value = "";
+        document.querySelector('#main-content').appendChild(span)
+
+        // show the next word
+        self.nextWord();
+      });
     });
   }
 }
 
-const game = new Generator(story);
-game.startButton();
+const game = new Generator(story, 60);
+game.startButton()
