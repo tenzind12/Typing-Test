@@ -42,7 +42,7 @@ class Generator {
       e.preventDefault();
       
       // check if correct
-      const isCorrect = input.value === this.state.currentWord;
+      const isCorrect = (input.value).toLowerCase() === this.state.currentWord;
       
       if (isCorrect) {
         span = this.createSpan("green", input.value);
