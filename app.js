@@ -13,7 +13,7 @@ class Generator {
   randomWord() {
     const splitted = this.story.split(" ");
     const randomWord = splitted[Math.floor(Math.random() * splitted.length - 1)];
-    return randomWord;
+    return randomWord.toLowerCase().trim();
   }
 
   // display random word in DOM ----------------------------------
@@ -28,7 +28,7 @@ class Generator {
   // create a span with userInput ----------------------------------
   createSpan(color, userInput) {
     const span = document.createElement("span");
-    const style = `background : ${color}; border-right: white 2px solid`;
+    const style = `color : ${color}`;
     span.setAttribute("style", style);
     span.textContent = userInput;
     return span;
@@ -90,6 +90,7 @@ class Generator {
     const button = document.querySelector("#button");
     const stats = document.querySelector("#stats");
     const input = document.querySelector("#input");
+    const img = document.querySelector("img");
 
     button.addEventListener(
       "click",
@@ -97,6 +98,7 @@ class Generator {
         button.className = "hide";
         stats.className = "";
         input.className = "";
+        img.className = "hide";
         input.focus();
         this.nextWord();
         this.formHandler();
@@ -107,5 +109,5 @@ class Generator {
   }
 }
 
-const game = new Generator(story, 20);
+const game = new Generator(story, 30);
 game.startButton();

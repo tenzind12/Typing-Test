@@ -5,34 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      .hide {
-        display: none;
-      }
-      </style>
+    <link rel="stylesheet" href="style.css" />
+    <link href="http://fonts.cdnfonts.com/css/games" rel="stylesheet" />
   </head>
   <body>
-    <header>
-      <article id="stats" class="hide">
-        <p>WPM: <span id="wpm-display"></span></p>
-        <p>Score <span id="score-display"></span></p>
-        <p>Time Left: <span id="time-display"></span></p>
-      </article>
-      <h1 id="main-heading">This game is something else...</h1>
-    </header>
-    <main>
-      <section id="main-section">
-        <!-- typed words -->
-        <article id="main-content"></article>
-        <button id="button">Start game</button>
-        
-        <article id="text-display"></article>
-        
-        <form id="form">
-          <input type="text" id="input" class="hide" />
-        </form>
-      </section>
-    </main>
+    <div class="container">
+      <header>
+        <article id="stats" class="hide">
+          <p>WPM: <span id="wpm-display"></span></p>
+          <p>Score <span id="score-display"></span></p>
+          <p>Time Left: <span id="time-display"></span></p>
+        </article>
+        <h1 id="main-heading">Test your typing speed...</h1>
+      </header>
+      <main>
+        <section id="main-section">
+          <!-- typed words -->
+          <article id="main-content"></article>
+          <img src="two-fingers.gif" alt="" />
+          <button id="button">Start game</button>
+
+          <article id="text-display"></article>
+
+          <form id="form">
+            <input type="text" id="input" class="hide" />
+          </form>
+        </section>
+      </main>
+    </div>
     <script src="story.js"></script>
     <script src="app.js" defer></script>
   </body>
