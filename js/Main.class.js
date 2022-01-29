@@ -118,5 +118,5 @@ class Generator {
   }
 }
 
-const game = new Generator(story, 5);
+const game = new Generator(story, 30);
 game.startButton();
