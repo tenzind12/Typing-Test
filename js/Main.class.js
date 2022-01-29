@@ -63,18 +63,26 @@ class Generator {
   // start timer clock --------------------------------------------
   startClock() {
     const timer = setInterval(() => {
+      const wpmDisplay = document.querySelector("#wpm-display");
       this.state.timeElapsed++;
       this.renderStats();
 
       if (this.time == this.state.timeElapsed) {
         clearInterval(timer);
-        alert("Game Over ! WPM : " + document.querySelector("#wpm-display").textContent);
+        alert("Game Over ! WPM : " + wpmDisplay.textContent);
+
+        const scores = JSON.parse(localStorage.getItem("highscores")) || [];
+        scores.push(wpmDisplay.textContent);
+        // remove oldest score
+        if (scores.length >= 10) scores.shift();
+        localStorage.setItem("highscores", JSON.stringify(scores));
+
         window.location.reload();
       }
     }, 1000);
   }
 
-  // render on DOM
+  // render score/second/wpm on DOM each second
   renderStats() {
     const wpm = document.querySelector("#wpm-display");
     const score = document.querySelector("#score-display");
@@ -87,18 +95,19 @@ class Generator {
 
   // button eventLIstener ----------------------#####----------------
   startButton() {
-    const button = document.querySelector("#button");
+    const startBtn = document.querySelector(".startBtn");
+    const buttons = document.querySelectorAll(".button");
     const stats = document.querySelector("#stats");
     const input = document.querySelector("#input");
     const img = document.querySelector("img");
 
-    button.addEventListener(
+    startBtn.addEventListener(
       "click",
       function () {
-        button.className = "hide";
+        buttons.forEach((btn) => (btn.className = "hide"));
+        img.className = "hide";
         stats.className = "";
         input.className = "";
-        img.className = "hide";
         input.focus();
         this.nextWord();
         this.formHandler();
@@ -109,5 +118,5 @@ class Generator {
   }
 }
 
-const game = new Generator(story, 30);
+const game = new Generator(story, 5);
 game.startButton();
