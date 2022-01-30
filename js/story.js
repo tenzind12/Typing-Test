@@ -1,7 +1,7 @@
 const story = `Once when I was six years old I saw a magnificent picture in a book
  called True Stories from Nature about the primeval forest It was a picture of a
  boa constrictor in the act of swallowing an animal Here is a copy of the drawing
-boa constrictor swallowing an animal In the book it said Boa constrictors swallow
+ boa constrictor swallowing an animal In the book it said Boa constrictors swallow
  their prey whole without chewing it After that they are not able to move and
  they sleep through the six months that they need for digestion I pondered deeply
  then over the adventures of the jungle And after some work with a colored pencil
